@@ -54,7 +54,7 @@ class Server:
         if len(pages) == 0:
             page_size = 0
             next_page = None
-        prev_page = page -1
+        prev_page = page - 1
         if prev_page < 1:
             prev_page = None
         dictionary = {
