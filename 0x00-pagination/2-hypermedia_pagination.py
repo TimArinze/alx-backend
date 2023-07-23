@@ -48,21 +48,16 @@ class Server:
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, int]:
         """Returns dictionary of the details of the pagination"""
-        total_pages = len(self.dataset()) / page_size
+        total_pages = math.ceil(len(self.dataset()) / page_size)
         pages = self.get_page(page, page_size)
-        next_page = page + 1
         if len(pages) == 0:
             page_size = 0
-            next_page = None
-        prev_page = page - 1
-        if prev_page < 1:
-            prev_page = None
         dictionary = {
                 "page_size": page_size,
                 "page": page,
                 "data": pages,
-                "next_page": next_page,
-                "prev_page": prev_page,
-                "total_pages": math.ceil(total_pages)
+                "next_page": page + 1 if total_pages > page else None,
+                "prev_page": page - 1 if (page - 1) > 0 else None,
+                "total_pages": total_pages
                 }
         return dictionary
