@@ -2,7 +2,7 @@
 """
 Simple pagination
 """
-from typing import Tuple, List, Any
+from typing import Tuple, List, Dict, Union, Any
 import csv
 import math
 
@@ -38,14 +38,31 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Return appropriate page"""
-        if type(page) and type(page_size) is not int:
-            raise AssertionError
-        if page < 1 or page_size < 1 == True:
-            raise AssertionError
+        assert type(page) and type(page_size) == int
+        assert page > 0 and page_size > 0
         index = index_range(page, page_size)
         start = index[0]
         end = index[1]
         pages = self.dataset()[start:end]
         return pages
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> :
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+        """Returns dictionary of the details of the pagination"""
+        total_pages = len(self.dataset()) / page_size
+        pages = self.get_page(page, page_size)
+        next_page = page + 1
+        if len(pages) == 0:
+            page_size = 0
+            next_page = None
+        prev_page = page -1
+        if prev_page < 1:
+            prev_page = None
+        dictionary = {
+                "page_size": page_size,
+                "page": page,
+                "data": pages,
+                "next_page": next_page,
+                "prev_page": prev_page,
+                "total_pages": math.ceil(total_pages)
+                }
+        return dictionary
