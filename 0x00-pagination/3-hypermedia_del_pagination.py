@@ -41,9 +41,16 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """returns a dictionary of index, next index, page_size and data"""
         #assert index <= list(self.indexed_dataset().keys())[-1]
+        def get_next_index(self, dictionary, current_index, page_size):
+            index_list = list(dictionary.keys)
+            if current_index + page_size < len(index_list):
+                return index_list[current_index + page_size]
+            else:
+                return None
 
-        next_index = index + page_size
-        next_index = index + 
+        next_index = get_next_index(self.indexed_dataset(), index, page_size)
+        # next_index = index + page_size
+        def get_data
         dictionary = {
                 "index": index,
                 "next_index": next_index
