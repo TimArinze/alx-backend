@@ -17,9 +17,10 @@ class BasicCache(BaseCaching):
         """assign a dictionary self.cache_data (key and value)"""
         if key or item is not None:
             self.cache_data[key] = item
+        else:
+            pass
 
     def get(self, key: str) -> Dict:
         """returns value of self.cache_data linked to key"""
-        if key is None or key not in self.cache_data.keys():
-            return None
-        return self.cache_data[key]
+        if key is not None and key in self.cache_data.keys():
+            return self.cache_data[key]
