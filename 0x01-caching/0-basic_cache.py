@@ -9,9 +9,9 @@ from typing import Any, Dict
 class BasicCache(BaseCaching):
     """A basic caching system"""
 
-    def __init__(self):
-        """Initializing"""
-        super().__init__()
+    # def __init__(self):
+        # """Initializing"""
+        # super().__init__()
 
     def put(self, key: str, item: Any):
         """assign a dictionary self.cache_data (key and value)"""
