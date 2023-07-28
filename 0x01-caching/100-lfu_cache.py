@@ -16,11 +16,11 @@ class LFUCache(BaseCaching):
         """putting into cache"""
         if key and item:
             if key in self.cache_data.keys():
-                self.dictionary[key] =+ 1
+                self.dictionary[key] += 1
             if key not in self.cache_data.keys():
                 if len(self.cache_data) == BaseCaching.MAX_ITEMS:
                     sorted_dict = dict(sorted(self.dictionary.items(),
-                            key=lambda x:x[1]))
+                                              key=lambda x: x[1]))
                     first_key = list(sorted_dict.keys())[0]
                     self.cache_data.pop(first_key)
                     self.dictionary.pop(first_key)
@@ -31,5 +31,5 @@ class LFUCache(BaseCaching):
     def get(self, key):
         """retreiving data from cache"""
         if key and key in self.cache_data.keys():
-            self.dictionary[key] =+ 1
+            self.dictionary[key] += 1
             return self.cache_data.get(key)
