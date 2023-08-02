@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template
-"""Basic Flask app"""
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    """Just rendering the template at /"""
+    """Basic Flask App"""
     return render_template('0-index.html')
 
 
