@@ -15,10 +15,9 @@ class Config(object):
     """Config Class"""
     LANGUAGES = ["en", "fr"]
     
-    app.config['BABEL_DEFAULT_LOCALE'] = 'en'
-    app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
-app.config.from_object(Config)
 
 @app.route('/')
 def index():
